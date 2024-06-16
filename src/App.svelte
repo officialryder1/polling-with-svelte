@@ -22,9 +22,14 @@
 		activeItem = "Current Polls"
 	}
 
+	// This is a store that we used to add transistion to our poll bar
+
+	// <Button/>
+
 	
 </script>
 
+<!-- <button on:click={() => value.set(1)}>{$value}</button> -->
 <Header/>
 <main>
 	<Tab {activeItem} {items} on:tabChange={tabChange}/>

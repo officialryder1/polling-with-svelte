@@ -12,6 +12,19 @@
     $: percentA = Math.floor(100/totalVotes * poll.voteA)
     $: percentB= Math.floor(100/totalVotes * poll.voteB)
 
+
+    import { tweened } from 'svelte/motion'
+	
+	const value = tweened(0);
+
+    // tweened percentages
+    const tweenedA = tweened(0)
+    const tweenedB = tweened(0)
+
+    $: tweenedA.set(percentA)
+    $: tweenedB.set(percentB)
+    
+
     // handling votes
     const handleVote = (option, id) => {
 
@@ -46,13 +59,13 @@
         <p>Total Vote: {totalVotes}</p>
         <!-- svelte-ignore a11y-click-events-have-key-events -->
         <div class="answer" on:click={() => handleVote('a', poll.id)}>
-            <div class="percent percent-a" style="width: {percentA}%;"></div>
+            <div class="percent percent-a" style="width: {$tweenedA}%;"></div>
             <span>{poll.answerA} ({poll.voteA})</span>
             
         </div>
         <!-- svelte-ignore a11y-click-events-have-key-events -->
         <div class="answer" on:click={() => handleVote('b', poll.id)}>
-            <div class="percent percent-b" style="width: {percentB}%;"></div>
+            <div class="percent percent-b" style="width: {$tweenedB}%;"></div>
             <span>{poll.answerB} ({poll.voteB})</span>
             
         </div>

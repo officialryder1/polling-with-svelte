@@ -1,4 +1,6 @@
 <script>
+    import { fade, slide, scale} from 'svelte/transition'
+    import {flip} from 'svelte/animate'
     import PollDetail from "./PollDetail.svelte";
     import PollStore from "../store/PollStore";
     // import {onMount, onDestroy} from 'svelte';
@@ -24,7 +26,7 @@
 
 <div class="poll-list">
     {#each $PollStore as poll (poll.id) }
-        <div>
+        <div in:scale out:slide animate:flip={{duration: 500}}><!--add a fade transition to this card so it fade whenever it comes in and out of the Dom-->
             <PollDetail {poll} />
         </div>
     {/each}
